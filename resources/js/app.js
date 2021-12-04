@@ -7,6 +7,13 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
+Vue.use(VueAxios, axios);
+import App from './app.vue';
+import { routes } from './routes';
 
 /**
  * The following block of code may be used to automatically register your
@@ -27,6 +34,13 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+const router = new VueRouter({
+    mode: 'history',
+    routes: routes
+});
+
 const app = new Vue({
     el: '#app',
+    router: router,
+    render: h => h(App),
 });

@@ -1,15 +1,14 @@
 <template>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="collapse navbar-collapse">
-                <div class="navbar-nav">
-                    <router-link :to="{ name: 'ProductIndex' }"  class="nav-item nav-link">Products</router-link>
-                </div>
-            </div>
-        </nav>
+<div>
+    <header-component></header-component>
         <router-view> </router-view>
-    </div>
+  </div>  
 </template>
 <script>
-    export default {}
+import HeaderComponent from './components/HeaderComponent.vue'
+    export default {
+      components:{
+          HeaderComponent
+      }  
+    }
 </script>

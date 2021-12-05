@@ -15,7 +15,7 @@ class GameController extends Controller
      */
     public function index()
     {
-        $games = Game::all(['id','name']);
+        $games = Game::all();
         return response()->json($games);
     }
 

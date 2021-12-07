@@ -5687,7 +5687,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     deleteGame: function deleteGame(id) {
       var _this2 = this;
 
-      if (confirm("¿Confirma eliminar el registro?")) {
+      if (confirm("Do you confirm to delete the game?")) {
         this.axios["delete"]("/api/games/".concat(id)).then(function (response) {
           _this2.$router.push({
             name: "Home"

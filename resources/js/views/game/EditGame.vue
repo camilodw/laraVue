@@ -116,7 +116,7 @@ export default {
         });
     },
       deleteGame(id) {
-      if (confirm("¿Confirma eliminar el registro?")) {
+      if (confirm("Do you confirm to delete the game?")) {
         this.axios
           .delete(`/api/games/${id}`)
           .then((response) => {

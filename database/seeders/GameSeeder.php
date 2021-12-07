@@ -29,7 +29,7 @@ class GameSeeder extends Seeder
         ]);
         DB::table('games')->insert([
             'name' => 'DRAGON & PHOENIX',
-            'urlImage' => 'hhttps://winchiletragamonedas.com/public/images/games/dragon_phoenix.jpeg',
+            'urlImage' => 'https://winchiletragamonedas.com/public/images/games/dragon_phoenix.jpeg',
             'urlGame'=>'https://latamwin-gp3.discreetgaming.com/cwguestlogin.do?bankId=3006&gameId=814&lang=es',
             'description'=>'description of DRAGON & PHOENIX',
             'status'=>true
@@ -48,6 +48,7 @@ class GameSeeder extends Seeder
             'description'=>'description of CAISHEN’S ARRIVAL',
             'status'=>false
         ]);
+
         DB::table('games')->insert([
             'name' => 'GEMMED!',
             'urlImage' => 'https://winchiletragamonedas.com/public/images/games/gemmed.jpeg',
@@ -55,7 +56,5 @@ class GameSeeder extends Seeder
             'description'=>'description of GEMMED!',
             'status'=>true
         ]);
-
-
     }
 }

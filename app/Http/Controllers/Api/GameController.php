@@ -1,11 +1,8 @@
 <?php
-
 namespace App\Http\Controllers\Api;
-
 use App\Http\Controllers\Controller;
 use App\Models\Game;
 use Illuminate\Http\Request;
-
 class GameController extends Controller
 {
     /**
@@ -18,7 +15,6 @@ class GameController extends Controller
         $games = Game::all();
         return response()->json($games);
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -30,10 +26,9 @@ class GameController extends Controller
         $game = Game::create($request->all());
         return response()->json([
             'status' => 'success',
-            'product'   => $game
+            'game'   => $game
         ]);
     }
-
     /**
      * Display the specified resource.
      *
@@ -44,7 +39,6 @@ class GameController extends Controller
     {
         return response()->json($game);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -59,7 +53,6 @@ class GameController extends Controller
             'game'=>$game
         ]);
     }
-
     /**
      * Remove the specified resource from storage.
      *

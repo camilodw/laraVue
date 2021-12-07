@@ -1,4 +1,5 @@
 import Home from './views/Home.vue';
+//imporrtamos los componentes de game
 import EditGame from './views/game/EditGame.vue';
 import CreateGame from './views/game/CreateGame.vue';
 export const routes = [{

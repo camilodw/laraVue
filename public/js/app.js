@@ -5619,6 +5619,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "editGame",
   data: function data() {
@@ -5650,11 +5660,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 2;
                 return _this.axios.get("/api/games/".concat(_this.$route.params.id)).then(function (response) {
                   var _response$data = response.data,
+                      id = _response$data.id,
                       name = _response$data.name,
                       status = _response$data.status,
                       description = _response$data.description,
                       urlImage = _response$data.urlImage,
                       urlGame = _response$data.urlGame;
+                  _this.game.id = id;
                   _this.game.name = name;
                   _this.game.status = status;
                   _this.game.description = description;
@@ -5672,8 +5684,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    updateGame: function updateGame() {
+    deleteGame: function deleteGame(id) {
       var _this2 = this;
+
+      if (confirm("¿Confirma eliminar el registro?")) {
+        this.axios["delete"]("/api/games/".concat(id)).then(function (response) {
+          _this2.$router.push({
+            name: "Home"
+          });
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
+    },
+    updateGame: function updateGame() {
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
@@ -5681,8 +5706,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return _this2.axios.put("/api/games/".concat(_this2.$route.params.id), _this2.game).then(function (response) {
-                  _this2.$router.push({
+                return _this3.axios.put("/api/games/".concat(_this3.$route.params.id), _this3.game).then(function (response) {
+                  _this3.$router.push({
                     name: "Home"
                   });
                 })["catch"](function (error) {
@@ -29465,9 +29490,7 @@ var render = function () {
     },
     [
       _c("div", { staticClass: "container-fluid" }, [
-        _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-          _vm._v("LaraGames"),
-        ]),
+        _c("a", { staticClass: "navbar-brand" }, [_vm._v("LaraGames")]),
         _vm._v(" "),
         _vm._m(0),
         _vm._v(" "),
@@ -29656,7 +29679,7 @@ var render = function () {
       _c(
         "form",
         {
-          staticClass: "col-lg-4 bg-white",
+          staticClass: "mt-5 col-lg-4 col-12 col-md-10 bg-white border",
           on: {
             submit: function ($event) {
               $event.preventDefault()
@@ -29750,7 +29773,7 @@ var render = function () {
               ? _c(
                   "button",
                   {
-                    staticClass: "btn btn-outline-danger",
+                    staticClass: "btn btn-outline-danger form-control",
                     attrs: { type: "button" },
                     on: { click: _vm.toggleStatus },
                   },
@@ -29762,7 +29785,7 @@ var render = function () {
               ? _c(
                   "button",
                   {
-                    staticClass: "btn btn-outline-success",
+                    staticClass: "btn btn-outline-success form-control",
                     attrs: { type: "button" },
                     on: { click: _vm.toggleStatus },
                   },
@@ -29800,7 +29823,7 @@ var render = function () {
           _c(
             "button",
             { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-            [_vm._v("Save changes")]
+            [_vm._v("Save")]
           ),
         ]
       ),
@@ -29835,7 +29858,7 @@ var render = function () {
       _c(
         "form",
         {
-          staticClass: "mt-5 col-lg-4 bg-white border round",
+          staticClass: "mt-5 col-lg-4 col-12 col-md-10 bg-white border round",
           on: {
             submit: function ($event) {
               $event.preventDefault()
@@ -29922,31 +29945,33 @@ var render = function () {
             }),
           ]),
           _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _vm.game.status == false
-            ? _c(
-                "button",
-                {
-                  staticClass: "btn btn-outline-danger",
-                  attrs: { type: "button" },
-                  on: { click: _vm.toggleStatus },
-                },
-                [_vm._v("\n        Not available\n      ")]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.game.status == true
-            ? _c(
-                "button",
-                {
-                  staticClass: "btn btn-outline-success",
-                  attrs: { type: "button" },
-                  on: { click: _vm.toggleStatus },
-                },
-                [_vm._v("\n        Available\n      ")]
-              )
-            : _vm._e(),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("Status:")]),
+            _vm._v(" "),
+            _vm.game.status == false
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-danger form-control",
+                    attrs: { type: "button" },
+                    on: { click: _vm.toggleStatus },
+                  },
+                  [_vm._v("\n          Not available\n        ")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.game.status == true
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-success form-control",
+                    attrs: { type: "button" },
+                    on: { click: _vm.toggleStatus },
+                  },
+                  [_vm._v("\n          Available\n        ")]
+                )
+              : _vm._e(),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "" } }, [_vm._v("Description")]),
@@ -29975,23 +30000,43 @@ var render = function () {
           ]),
           _vm._v(" "),
           _c(
-            "button",
-            { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-            [_vm._v("Save changes")]
+            "div",
+            { staticClass: "text-end mt-2 mb-2" },
+            [
+              _c(
+                "router-link",
+                { staticClass: "btn btn-secondary", attrs: { to: "/" } },
+                [_vm._v("Close")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.deleteGame(_vm.game.id)
+                    },
+                  },
+                },
+                [_vm._v("\n          Delete\n        ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+                [_vm._v("Save changes")]
+              ),
+            ],
+            1
           ),
         ]
       ),
     ]),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("label", { attrs: { for: "" } }, [_vm._v("Status:")])])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

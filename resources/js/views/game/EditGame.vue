@@ -3,8 +3,9 @@
     <div class="row justify-content-center">
       <form
         @submit.prevent="updateGame"
-        class="mt-5 col-lg-4 bg-white border round"
+        class="mt-5 col-lg-4 col-12 col-md-10 bg-white border round"
       >
+      
         <div class="form-group">
           <label for="">Name:</label>
           <input
@@ -32,26 +33,25 @@
             v-model="game.urlGame"
           />
         </div>
-        <div>
+        <div class="form-group">
           <label for="">Status:</label>
+          <button
+            type="button"
+            class="btn btn-outline-danger form-control"
+            v-on:click="toggleStatus"
+            v-if="game.status == false"
+          >
+            Not available
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-success form-control"
+            v-on:click="toggleStatus"
+            v-if="game.status == true"
+          >
+            Available
+          </button>
         </div>
-        <button
-          type="button"
-          class="btn btn-outline-danger"
-          v-on:click="toggleStatus"
-          v-if="game.status == false"
-        >
-          Not available
-        </button>
-        <button
-          type="button"
-          class="btn btn-outline-success"
-          v-on:click="toggleStatus"
-          v-if="game.status == true"
-        >
-          Available
-        </button>
-
         <div class="form-group">
           <label for="">Description</label>
           <input
@@ -61,7 +61,17 @@
             v-model="game.description"
           />
         </div>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <div class="text-end mt-2 mb-2">
+          <router-link to="/" class="btn btn-secondary">Close</router-link>
+          <button
+            type="button"
+            class="btn btn-danger"
+            @click="deleteGame(game.id)"
+          >
+            Delete
+          </button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
       </form>
     </div>
   </div>
@@ -91,17 +101,31 @@ export default {
       await this.axios
         .get(`/api/games/${this.$route.params.id}`)
         .then((response) => {
-          const { name, status, description, urlImage, urlGame } =
+          const { id,name, status, description, urlImage, urlGame } =
             response.data;
+             this.game.id = id;
           this.game.name = name;
           this.game.status = status;
           this.game.description = description;
           this.game.urlImage = urlImage;
           this.game.urlGame = urlGame;
+
         })
         .catch((error) => {
           console.log(error);
         });
+    },
+      deleteGame(id) {
+      if (confirm("¿Confirma eliminar el registro?")) {
+        this.axios
+          .delete(`/api/games/${id}`)
+          .then((response) => {
+            this.$router.push({ name: "Home" });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     },
     async updateGame() {
       await this.axios
@@ -113,6 +137,7 @@ export default {
           console.log(error);
         });
     },
+  
   },
 };
 </script>

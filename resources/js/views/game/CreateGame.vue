@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row justify-content-center">
-      <form @submit.prevent="createGame" class="col-lg-4 bg-white">
+      <form @submit.prevent="createGame" class="mt-5 col-lg-4 col-12 col-md-10 bg-white border">
         <div class="form-group">
           <label for="">Name:</label>
           <input
@@ -33,7 +33,7 @@
           <label for="">Status:</label>
          <button
           type="button"
-          class="btn btn-outline-danger"
+          class="btn btn-outline-danger form-control"
           v-on:click="toggleStatus"
           v-if="game.status == false"
         >
@@ -41,7 +41,7 @@
         </button>
         <button
           type="button"
-          class="btn btn-outline-success"
+          class="btn btn-outline-success form-control"
           v-on:click="toggleStatus"
           v-if="game.status == true"
         >
@@ -57,7 +57,7 @@
             v-model="game.description"
           />
         </div>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary">Save</button>
       </form>
     </div>
   </div>

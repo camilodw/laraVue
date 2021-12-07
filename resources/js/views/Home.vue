@@ -58,6 +58,7 @@ export default {
           this.games = [];
         });
     },
+    
   },
 };
 </script>

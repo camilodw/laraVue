@@ -11,7 +11,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-light">
     <div id="app"></div>
     <script src="{{ asset('js/app.js')}}"></script>
 </body>

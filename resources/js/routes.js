@@ -1,11 +1,19 @@
-import ListGame from './components/game/ListGame.vue';
-//import CreateGame from './components/game/CreateGame.vue';
-//import EditGame from './components/game/EditGame.vue';
-
+import Home from './views/Home.vue';
+import EditGame from './views/game/EditGame.vue';
+import CreateGame from './views/game/CreateGame.vue';
 export const routes = [{
         path: '/',
-        component: ListGame,
-        name: "ListGame"
+        component: Home,
+        name: "Home"
     },
-
+    {
+        name: 'EditGame',
+        path: '/edit/:id',
+        component: EditGame
+    },
+    {
+        name: 'CreateGame',
+        path: '/create',
+        component: CreateGame
+    }
 ];

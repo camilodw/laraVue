@@ -10,6 +10,9 @@
         <li class="nav-item">
           <router-link to="/" class="nav-link">Home</router-link>
         </li>
+<li class="nav-item">
+    <a href="https://github.com/camilodw/laraVue" target="_blank" class="nav-link">Proyect</a> 
+        </li>
       </ul>
     </div>
   </div>

@@ -5357,6 +5357,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'headerLayout'
 });
@@ -30319,6 +30322,8 @@ var render = function () {
                 ],
                 1
               ),
+              _vm._v(" "),
+              _vm._m(1),
             ]),
           ]
         ),
@@ -30346,6 +30351,24 @@ var staticRenderFns = [
       },
       [_c("span", { staticClass: "navbar-toggler-icon" })]
     )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link",
+          attrs: {
+            href: "https://github.com/camilodw/laraVue",
+            target: "_blank",
+          },
+        },
+        [_vm._v("Proyect")]
+      ),
+    ])
   },
 ]
 render._withStripped = true

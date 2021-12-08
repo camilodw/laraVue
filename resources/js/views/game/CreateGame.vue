@@ -48,7 +48,7 @@
           </div>
           <button
             type="button"
-            class="btn btn-outline-danger form-control"
+            class="btn btn-danger form-control"
             v-on:click="toggleStatus"
             v-if="game.status == false"
           >
@@ -56,7 +56,7 @@
           </button>
           <button
             type="button"
-            class="btn btn-outline-success form-control"
+            class="btn btn-success form-control"
             v-on:click="toggleStatus"
             v-if="game.status == true"
           >

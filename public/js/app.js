@@ -29812,7 +29812,7 @@ var render = function () {
               ? _c(
                   "button",
                   {
-                    staticClass: "btn btn-outline-danger form-control",
+                    staticClass: "btn btn-danger form-control",
                     attrs: { type: "button" },
                     on: { click: _vm.toggleStatus },
                   },
@@ -29824,7 +29824,7 @@ var render = function () {
               ? _c(
                   "button",
                   {
-                    staticClass: "btn btn-outline-success form-control",
+                    staticClass: "btn btn-success form-control",
                     attrs: { type: "button" },
                     on: { click: _vm.toggleStatus },
                   },

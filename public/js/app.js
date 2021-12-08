@@ -30385,7 +30385,7 @@ var render = function () {
                 staticClass: "btn btn-success rounded-circle",
                 attrs: { to: "/create" },
               },
-              [_vm._v("➕")]
+              [_c("i", { staticClass: "fas fa-plus" })]
             ),
           ],
           1

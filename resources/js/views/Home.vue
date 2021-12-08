@@ -3,7 +3,7 @@
     <div class="row mt-5">
       <div class="col-12 text-center">
         <router-link to="/create" class="btn btn-success rounded-circle"
-          >➕</router-link
+          ><i class="fas fa-plus"></i></router-link
         >
       </div>
     </div>

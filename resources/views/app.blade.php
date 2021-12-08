@@ -7,6 +7,7 @@
     <meta name="csrf-token" value="{{ csrf_token() }}" />
     <title>LaraGames</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/123b103282.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="bg-light">

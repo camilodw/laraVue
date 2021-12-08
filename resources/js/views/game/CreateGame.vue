@@ -1,9 +1,15 @@
 <template>
   <div class="container">
     <div class="row justify-content-center">
-      <form @submit.prevent="createGame" class="mt-5 col-lg-4 col-12 col-md-10 bg-white border">
+      <form
+        @submit.prevent="createGame"
+        class="mt-5 col-lg-4 col-12 col-md-10 bg-white border"
+      >
         <div class="form-group">
           <label for="">Name:</label>
+          <div class="alert alert-danger" v-if="errors.name">
+            {{ errors.name[0] }}
+          </div>
           <input
             type="text"
             class="form-control"
@@ -13,6 +19,9 @@
         </div>
         <div class="form-group">
           <label for="">Url image</label>
+          <div class="alert alert-danger" v-if="errors.urlImage">
+            {{ errors.urlImage[0] }}
+          </div>
           <input
             type="text"
             class="form-control"
@@ -22,6 +31,9 @@
         </div>
         <div class="form-group">
           <label for="">Url Game</label>
+          <div class="alert alert-danger" v-if="errors.urlGame">
+            {{ errors.urlGame[0] }}
+          </div>
           <input
             type="text"
             class="form-control"
@@ -31,25 +43,31 @@
         </div>
         <div class="form-group">
           <label for="">Status:</label>
-         <button
-          type="button"
-          class="btn btn-outline-danger form-control"
-          v-on:click="toggleStatus"
-          v-if="game.status == false"
-        >
-          Not available
-        </button>
-        <button
-          type="button"
-          class="btn btn-outline-success form-control"
-          v-on:click="toggleStatus"
-          v-if="game.status == true"
-        >
-          Available
-        </button>
+          <div class="alert alert-danger" v-if="errors.status">
+            {{ errors.status[0] }}
+          </div>
+          <button
+            type="button"
+            class="btn btn-outline-danger form-control"
+            v-on:click="toggleStatus"
+            v-if="game.status == false"
+          >
+            Not available
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-success form-control"
+            v-on:click="toggleStatus"
+            v-if="game.status == true"
+          >
+            Available
+          </button>
         </div>
         <div class="form-group">
           <label for="">Description</label>
+          <div class="alert alert-danger" v-if="errors.description">
+            {{ errors.description[0] }}
+          </div>
           <input
             type="text"
             class="form-control"
@@ -73,6 +91,7 @@ export default {
         status: false,
         description: "",
       },
+      errors: {},
     };
   },
   methods: {
@@ -86,7 +105,9 @@ export default {
           this.$router.push({ name: "Home" });
         })
         .catch((error) => {
-          console.log(error);
+          if (error.response.status === 422) {
+            this.errors = error.response.data.errors;
+          }
         });
     },
   },

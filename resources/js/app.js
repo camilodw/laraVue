@@ -10,7 +10,7 @@ Vue.use(VueAxios, axios);
 import App from './app.vue';
 import { routes } from './routes';
 
-
+Vue.component('pagination', require('laravel-vue-pagination'));
 const router = new VueRouter({
     mode: 'history',
     routes: routes

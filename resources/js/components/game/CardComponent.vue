@@ -35,6 +35,7 @@
 </template>
 <script>
 export default {
+    name:'CardComponent',
    props: {
     games: {
       type: Object,

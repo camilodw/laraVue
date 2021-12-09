@@ -5,6 +5,10 @@
         @submit.prevent="createGame"
         class="mt-5 col-lg-4 col-12 col-md-10 bg-white border"
       >
+      <div class="alert alert-success text-center" v-if="message">
+        {{ message
+         }}
+      </div>
         <div class="form-group">
           <label for="">Name:</label>
           <div class="alert alert-danger" v-if="errors.name">
@@ -75,7 +79,11 @@
             v-model="game.description"
           />
         </div>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <div class="col-12 text-end mt-2 mb-2">
+          <router-link to="/" class="btn btn-secondary">Close</router-link>
+ <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+       
       </form>
     </div>
   </div>
@@ -84,6 +92,7 @@
 export default {
   data() {
     return {
+      message:null,
       game: {
         name: "",
         urlImage: "",
@@ -102,7 +111,8 @@ export default {
       await this.axios
         .post("/api/games", this.game)
         .then((response) => {
-          this.$router.push({ name: "Home" });
+const {success}=response.data;
+this.message=success
         })
         .catch((error) => {
           if (error.response.status === 422) {

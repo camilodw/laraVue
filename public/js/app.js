@@ -5552,9 +5552,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      message: null,
       game: {
         name: "",
         urlImage: "",
@@ -5579,9 +5588,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.next = 2;
                 return _this.axios.post("/api/games", _this.game).then(function (response) {
-                  _this.$router.push({
-                    name: "Home"
-                  });
+                  var success = response.data.success;
+                  _this.message = success;
                 })["catch"](function (error) {
                   if (error.response.status === 422) {
                     _this.errors = error.response.data.errors;
@@ -30483,13 +30491,19 @@ var render = function () {
           },
         },
         [
+          _vm.message
+            ? _c("div", { staticClass: "alert alert-success text-center" }, [
+                _vm._v("\n       " + _vm._s(_vm.message) + "\n     "),
+              ])
+            : _vm._e(),
+          _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "" } }, [_vm._v("Name:")]),
             _vm._v(" "),
             _vm.errors.name
               ? _c("div", { staticClass: "alert alert-danger" }, [
                   _vm._v(
-                    "\n          " + _vm._s(_vm.errors.name[0]) + "\n        "
+                    "\n           " + _vm._s(_vm.errors.name[0]) + "\n         "
                   ),
                 ])
               : _vm._e(),
@@ -30523,9 +30537,9 @@ var render = function () {
             _vm.errors.urlImage
               ? _c("div", { staticClass: "alert alert-danger" }, [
                   _vm._v(
-                    "\n          " +
+                    "\n           " +
                       _vm._s(_vm.errors.urlImage[0]) +
-                      "\n        "
+                      "\n         "
                   ),
                 ])
               : _vm._e(),
@@ -30559,9 +30573,9 @@ var render = function () {
             _vm.errors.urlGame
               ? _c("div", { staticClass: "alert alert-danger" }, [
                   _vm._v(
-                    "\n          " +
+                    "\n           " +
                       _vm._s(_vm.errors.urlGame[0]) +
-                      "\n        "
+                      "\n         "
                   ),
                 ])
               : _vm._e(),
@@ -30595,7 +30609,9 @@ var render = function () {
             _vm.errors.status
               ? _c("div", { staticClass: "alert alert-danger" }, [
                   _vm._v(
-                    "\n          " + _vm._s(_vm.errors.status[0]) + "\n        "
+                    "\n           " +
+                      _vm._s(_vm.errors.status[0]) +
+                      "\n         "
                   ),
                 ])
               : _vm._e(),
@@ -30608,7 +30624,7 @@ var render = function () {
                     attrs: { type: "button" },
                     on: { click: _vm.toggleStatus },
                   },
-                  [_vm._v("\n          Not available\n        ")]
+                  [_vm._v("\n           Not available\n         ")]
                 )
               : _vm._e(),
             _vm._v(" "),
@@ -30620,7 +30636,7 @@ var render = function () {
                     attrs: { type: "button" },
                     on: { click: _vm.toggleStatus },
                   },
-                  [_vm._v("\n          Available\n        ")]
+                  [_vm._v("\n           Available\n         ")]
                 )
               : _vm._e(),
           ]),
@@ -30631,9 +30647,9 @@ var render = function () {
             _vm.errors.description
               ? _c("div", { staticClass: "alert alert-danger" }, [
                   _vm._v(
-                    "\n          " +
+                    "\n           " +
                       _vm._s(_vm.errors.description[0]) +
-                      "\n        "
+                      "\n         "
                   ),
                 ])
               : _vm._e(),
@@ -30662,9 +30678,22 @@ var render = function () {
           ]),
           _vm._v(" "),
           _c(
-            "button",
-            { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-            [_vm._v("Save")]
+            "div",
+            { staticClass: "col-12 text-end mt-2 mb-2" },
+            [
+              _c(
+                "router-link",
+                { staticClass: "btn btn-secondary", attrs: { to: "/" } },
+                [_vm._v("Close")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+                [_vm._v("Save")]
+              ),
+            ],
+            1
           ),
         ]
       ),

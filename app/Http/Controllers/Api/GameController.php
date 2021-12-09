@@ -32,7 +32,8 @@ class GameController extends Controller
             'status'=>'required'
         ]);
         $game = Game::create($data);
-        return response()->json();
+        return response()->json(['success'=>'
+        successfully created']);
     }
     /**
      * Display the specified resource.

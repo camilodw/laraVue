@@ -112,6 +112,7 @@ export default {
         .post("/api/games", this.game)
         .then((response) => {
 const {success}=response.data;
+this.errors =null;
 this.message=success
         })
         .catch((error) => {

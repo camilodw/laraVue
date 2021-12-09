@@ -5589,6 +5589,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 2;
                 return _this.axios.post("/api/games", _this.game).then(function (response) {
                   var success = response.data.success;
+                  _this.errors = null;
                   _this.message = success;
                 })["catch"](function (error) {
                   _this.message = null;

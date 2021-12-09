@@ -5591,6 +5591,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   var success = response.data.success;
                   _this.message = success;
                 })["catch"](function (error) {
+                  _this.message = null;
+
                   if (error.response.status === 422) {
                     _this.errors = error.response.data.errors;
                   }
@@ -5721,10 +5723,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "editGame",
   data: function data() {
     return {
+      message: null,
       errors: {},
       game: {
         name: "",
@@ -5800,11 +5806,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context2.next = 2;
                 return _this3.axios.put("/api/games/".concat(_this3.$route.params.id), _this3.game).then(function (response) {
-                  _this3.$router.push({
-                    name: "Home"
-                  });
+                  var success = response.data.success;
+                  _this3.message = success;
                 })["catch"](function (error) {
                   if (error.response.status === 422) {
+                    _this3.message = null;
                     _this3.errors = error.response.data.errors;
                   }
                 });
@@ -30737,6 +30743,12 @@ var render = function () {
           },
         },
         [
+          _vm.message
+            ? _c("div", { staticClass: "alert alert-success text-center" }, [
+                _vm._v("\n      " + _vm._s(_vm.message) + "\n    "),
+              ])
+            : _vm._e(),
+          _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "" } }, [_vm._v("Name:")]),
             _vm._v(" "),

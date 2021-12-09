@@ -5,7 +5,10 @@
         @submit.prevent="updateGame"
         class="mt-5 col-lg-4 col-12 col-md-10 bg-white border round"
       >
-      
+       <div class="alert alert-success text-center" v-if="message">
+        {{ message
+         }}
+      </div>
         <div class="form-group">
           <label for="">Name:</label>
           <div class="alert alert-danger" v-if="errors.name">
@@ -96,6 +99,7 @@ export default {
   name: "editGame",
   data() {
     return {
+      message:null,
        errors: {},
       game: {
         name: "",
@@ -148,10 +152,12 @@ export default {
       await this.axios
         .put(`/api/games/${this.$route.params.id}`, this.game)
         .then((response) => {
-          this.$router.push({ name: "Home" });
+         const {success}=response.data;
+          this.message=success
         })
         .catch((error) => {
          if (error.response.status === 422) {
+           this.message=null;
             this.errors = error.response.data.errors;
           }
         });

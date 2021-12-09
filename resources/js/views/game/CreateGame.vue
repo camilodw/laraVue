@@ -115,6 +115,7 @@ const {success}=response.data;
 this.message=success
         })
         .catch((error) => {
+          this.message=null
           if (error.response.status === 422) {
             this.errors = error.response.data.errors;
           }

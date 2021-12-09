@@ -31,7 +31,9 @@ class GameController extends Controller
             'description'=>'required|string|min:3|max:500',
             'status'=>'required'
         ]);
+        //se crea un registro con los datos ya validados
         $game = Game::create($data);
+        //retorna mensaje de operacion exitosa
         return response()->json(['success'=>'
         successfully created']);
     }
@@ -64,7 +66,10 @@ class GameController extends Controller
         ]);
             //se llena el modelo con los valores obtenidos y posteriormente se guardan
         $game->fill($request->all())->save();
-        return response()->json();
+        //retorna que la oferacion se completo con exito
+        return response()->json([
+            'success'=>'successfully saved'
+        ]);
     }
     /**
      * Remove the specified resource from storage.

@@ -5401,6 +5401,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "listGames",
@@ -30435,17 +30437,11 @@ var render = function () {
       _vm._v(" "),
       _c("card-component", { attrs: { games: _vm.games } }),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "col-12 text-center" },
-        [
-          _c("pagination", {
-            attrs: { data: _vm.games },
-            on: { "pagination-change-page": _vm.getGames },
-          }),
-        ],
-        1
-      ),
+      _c("pagination", {
+        staticClass: "d-flex justify-content-center",
+        attrs: { data: _vm.games },
+        on: { "pagination-change-page": _vm.getGames },
+      }),
     ],
     1
   )

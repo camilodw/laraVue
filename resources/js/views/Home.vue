@@ -3,14 +3,16 @@
     <div class="row mt-5">
       <div class="col-12 text-center">
         <router-link to="/create" class="btn btn-success rounded-circle"
-          ><i class="fas fa-plus"></i></router-link
-        >
+          ><i class="fas fa-plus"></i
+        ></router-link>
       </div>
     </div>
     <card-component :games="games" />
-    <div class="col-12 text-center">
-      <pagination :data="games" @pagination-change-page="getGames"></pagination>
-    </div>
+    <pagination
+      :data="games"
+      @pagination-change-page="getGames"
+      class="d-flex justify-content-center"
+    ></pagination>
   </div>
 </template>
 <script>

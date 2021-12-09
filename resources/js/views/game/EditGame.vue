@@ -8,6 +8,9 @@
       
         <div class="form-group">
           <label for="">Name:</label>
+          <div class="alert alert-danger" v-if="errors.name">
+            {{ errors.name[0] }}
+          </div>
           <input
             type="text"
             class="form-control"
@@ -17,6 +20,9 @@
         </div>
         <div class="form-group">
           <label for="">Url image</label>
+          <div class="alert alert-danger" v-if="errors.urlImage">
+            {{ errors.urlImage[0] }}
+          </div>
           <input
             type="text"
             class="form-control"
@@ -26,6 +32,9 @@
         </div>
         <div class="form-group">
           <label for="">Url Game</label>
+          <div class="alert alert-danger" v-if="errors.urlGame">
+            {{ errors.urlGame[0] }}
+          </div>
           <input
             type="text"
             class="form-control"
@@ -35,6 +44,9 @@
         </div>
         <div class="form-group">
           <label for="">Status:</label>
+          <div class="alert alert-danger" v-if="errors.status">
+            {{ errors.status[0] }}
+          </div>
           <button
             type="button"
             class="btn btn-danger form-control"
@@ -54,6 +66,9 @@
         </div>
         <div class="form-group">
           <label for="">Description</label>
+          <div class="alert alert-danger" v-if="errors.description">
+            {{ errors.description[0] }}
+          </div>
           <input
             type="text"
             class="form-control"
@@ -81,6 +96,7 @@ export default {
   name: "editGame",
   data() {
     return {
+       errors: {},
       game: {
         name: "",
         urlImage: "",
@@ -113,6 +129,7 @@ export default {
         })
         .catch((error) => {
           console.log(error);
+         
         });
     },
       deleteGame(id) {
@@ -123,7 +140,7 @@ export default {
             this.$router.push({ name: "Home" });
           })
           .catch((error) => {
-            console.log(error);
+              console.log(error);
           });
       }
     },
@@ -134,7 +151,9 @@ export default {
           this.$router.push({ name: "Home" });
         })
         .catch((error) => {
-          console.log(error);
+         if (error.response.status === 422) {
+            this.errors = error.response.data.errors;
+          }
         });
     },
   

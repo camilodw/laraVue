@@ -5696,10 +5696,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "editGame",
   data: function data() {
     return {
+      errors: {},
       game: {
         name: "",
         urlImage: "",
@@ -5778,7 +5794,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     name: "Home"
                   });
                 })["catch"](function (error) {
-                  console.log(error);
+                  if (error.response.status === 422) {
+                    _this3.errors = error.response.data.errors;
+                  }
                 });
 
               case 2:
@@ -30697,6 +30715,14 @@ var render = function () {
           _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "" } }, [_vm._v("Name:")]),
             _vm._v(" "),
+            _vm.errors.name
+              ? _c("div", { staticClass: "alert alert-danger" }, [
+                  _vm._v(
+                    "\n          " + _vm._s(_vm.errors.name[0]) + "\n        "
+                  ),
+                ])
+              : _vm._e(),
+            _vm._v(" "),
             _c("input", {
               directives: [
                 {
@@ -30722,6 +30748,16 @@ var render = function () {
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "" } }, [_vm._v("Url image")]),
+            _vm._v(" "),
+            _vm.errors.urlImage
+              ? _c("div", { staticClass: "alert alert-danger" }, [
+                  _vm._v(
+                    "\n          " +
+                      _vm._s(_vm.errors.urlImage[0]) +
+                      "\n        "
+                  ),
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -30749,6 +30785,16 @@ var render = function () {
           _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "" } }, [_vm._v("Url Game")]),
             _vm._v(" "),
+            _vm.errors.urlGame
+              ? _c("div", { staticClass: "alert alert-danger" }, [
+                  _vm._v(
+                    "\n          " +
+                      _vm._s(_vm.errors.urlGame[0]) +
+                      "\n        "
+                  ),
+                ])
+              : _vm._e(),
+            _vm._v(" "),
             _c("input", {
               directives: [
                 {
@@ -30774,6 +30820,14 @@ var render = function () {
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "" } }, [_vm._v("Status:")]),
+            _vm._v(" "),
+            _vm.errors.status
+              ? _c("div", { staticClass: "alert alert-danger" }, [
+                  _vm._v(
+                    "\n          " + _vm._s(_vm.errors.status[0]) + "\n        "
+                  ),
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _vm.game.status == false
               ? _c(
@@ -30802,6 +30856,16 @@ var render = function () {
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "" } }, [_vm._v("Description")]),
+            _vm._v(" "),
+            _vm.errors.description
+              ? _c("div", { staticClass: "alert alert-danger" }, [
+                  _vm._v(
+                    "\n          " +
+                      _vm._s(_vm.errors.description[0]) +
+                      "\n        "
+                  ),
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _c("input", {
               directives: [

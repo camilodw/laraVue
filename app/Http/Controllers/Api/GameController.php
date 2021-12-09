@@ -23,11 +23,12 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
+        //valido los campos en caso de no pasar los oarametros devuelve error 422
         $data=$request->validate([
-            'name'=>'required',
-            'urlImage'=>'required',
-            'urlGame'=>'required',
-            'description'=>'required',
+            'name'=>'required|string',
+            'urlImage'=>'required|url',
+            'urlGame'=>'required|url',
+            'description'=>'required|string|min:3|max:500',
             'status'=>'required'
         ]);
         $game = Game::create($data);
@@ -55,6 +56,14 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
+        $request->validate([
+            'name'=>'required|string',
+            'urlImage'=>'required|url',
+            'urlGame'=>'required|url',
+            'description'=>'required|string|min:3|max:500',
+            'status'=>'required'
+        ]);
+
         $game->fill($request->all())->save();
         return response()->json([            
             'game'=>$game

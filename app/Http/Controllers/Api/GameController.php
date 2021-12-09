@@ -32,10 +32,7 @@ class GameController extends Controller
             'status'=>'required'
         ]);
         $game = Game::create($data);
-        return response()->json([
-            'status' => 'success',
-            'game'   => $game
-        ]);
+        return response()->json();
     }
     /**
      * Display the specified resource.
@@ -56,6 +53,7 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
+        //valido los campos en caso de no pasar los oarametros devuelve error 422
         $request->validate([
             'name'=>'required|string',
             'urlImage'=>'required|url',
@@ -63,11 +61,9 @@ class GameController extends Controller
             'description'=>'required|string|min:3|max:500',
             'status'=>'required'
         ]);
-
+            //se llena el modelo con los valores obtenidos y posteriormente se guardan
         $game->fill($request->all())->save();
-        return response()->json([            
-            'game'=>$game
-        ]);
+        return response()->json();
     }
     /**
      * Remove the specified resource from storage.
@@ -77,7 +73,8 @@ class GameController extends Controller
      */
     public function destroy(Game $game)
     {
+        //se elimina el juego que se paso el id por parametro
         $game->delete();
-        return response()->json('Game successfully deleted!');
+        return response()->json();
     }
 }
